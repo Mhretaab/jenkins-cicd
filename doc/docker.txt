@@ -1,8 +1,8 @@
 #Dockerizing App
 =================
 ./mvnw clean package
-docker build -t jenkins-cicd .
-docker run -p 8686:8080 jenkins-cicd
+docker build -t mberhe/jenkins_cicd .
+docker run -p 8686:8080 mberhe/jenkins_cicd
 
 # Docker jenkins installation
 ==============================

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mberhe</groupId>
-	<artifactId>jenkins-cicd</artifactId>
+	<artifactId>jenkins_cicd</artifactId>
 <!--	<version>0.0.1</version>-->
 	<name>jenkins-cicd</name>
 	<description>Demo project for Spring Boot</description>
@@ -35,7 +35,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>jenkins-cicd-0.0.1</finalName>
+		<finalName>jenkins_cicd</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

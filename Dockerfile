@@ -8,10 +8,10 @@ VOLUME /tmp
 EXPOSE 8080
 
 # The application's jar file
-ARG JAR_FILE=target/jenkins-cicd-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/jenkins-cicd-0.0.1.jar
 
 # Add the application's jar to the container
-ADD ${JAR_FILE} jenkins-cicd-0.0.1-SNAPSHOT.jar
+ADD ${JAR_FILE} jenkins-cicd-0.0.1.jar
 
 # Run the jar file
-ENTRYPOINT ["java","-jar","/jenkins-cicd-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/jenkins-cicd-0.0.1.jar"]

@@ -1,3 +1,12 @@
+#Dockerizing App
+=================
 ./mvnw clean package
 docker build -t jenkins-cicd .
 docker run -p 8686:8080 jenkins-cicd
+
+# Docker jenkins installation
+==============================
+https://www.jenkins.io/doc/book/installing/docker/
+https://www.section.io/engineering-education/building-a-java-application-with-jenkins-in-docker/
+
+docker exec -it jenkins-blueocean bash

@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'mberhe/jenkins_cicd'
+        KUBECONFIG_CREDENTIALS = 'mykube-config'
     }
 
     stages {
@@ -43,10 +44,14 @@ pipeline {
             }
         }
 
-        stage('Deploy App') {
+        stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    kubernetesDeploy configs: "myweb.yaml"
+                    //kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykube-config")
+
+                    withKubeConfig([credentialsId: KUBECONFIG_CREDENTIALS]) {
+                        sh "kubectl apply -f myweb.yaml"
+                    }
                 }
             }
         }

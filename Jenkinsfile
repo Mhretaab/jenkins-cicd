@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'mberhe/jenkins_cicd'
+        KUBECONFIG_CREDENTIALS = 'mykube-config'
     }
 
     stages {
@@ -27,6 +28,7 @@ pipeline {
         stage('Build Docker Image') {
             steps{
                 script {
+                    echo "build number: ${env.BUILD_NUMBER}"
                     docker.build("${DOCKER_IMAGE}:${env.BUILD_NUMBER}")
                 }
             }
@@ -36,7 +38,19 @@ pipeline {
             steps{
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-                        docker.image("${DOCKER_IMAGE}:${env.BUILD_NUMBER}").push()
+                        docker.image("${DOCKER_IMAGE}:${env.BUILD_NUMBER}").push('latest')
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    //kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykube-config")
+
+                    withKubeConfig([credentialsId: KUBECONFIG_CREDENTIALS]) {
+                        sh "kubectl apply -f myweb.yaml"
                     }
                 }
             }

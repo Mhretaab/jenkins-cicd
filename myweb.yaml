@@ -2,37 +2,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: myweb
-  name: myweb
+  name: spring-boot-k8s
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: myweb
+      app: spring-boot-k8s
+  replicas: 2
   template:
     metadata:
       labels:
-        app: myweb
+        app: spring-boot-k8s
     spec:
       containers:
-        - image: mberhe/jenkins_cicd
-          imagePullPolicy: Always
-          name: myweb
+        - name: spring-boot-k8s
+          image: mberhe/jenkins_cicd
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: myweb
-  name: myweb
+  name: springboot-k8s-svc
 spec:
-  ports:
-    - nodePort: 32223
-      port: 80
-      protocol: TCP
-      targetPort: 80
   selector:
-    app: myweb
+    app: spring-boot-k8s
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort: 8686
   type: NodePort

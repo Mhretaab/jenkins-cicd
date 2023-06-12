@@ -9,4 +9,8 @@ docker run -p 8686:8080 mberhe/jenkins_cicd
 https://www.jenkins.io/doc/book/installing/docker/
 https://www.section.io/engineering-education/building-a-java-application-with-jenkins-in-docker/
 
+https://www.youtube.com/watch?v=6tcoRIPBd8s&t=494s
+https://www.youtube.com/watch?v=XE_mAhxZpwU
+https://www.youtube.com/watch?v=fodA9rM5xoo
+
 docker exec -it jenkins-blueocean bash
